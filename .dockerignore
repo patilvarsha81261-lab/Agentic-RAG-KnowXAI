@@ -1,0 +1,35 @@
+.venv/
+venv/
+env/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+tests/
+data/chroma/
+.git/
+.gitignore
+.vscode/
+pipeline_debug.log
+
+# Frontend generated files
+frontend/node_modules/
+frontend/dist/
+
+# Local database and generated data
+data/backups/
+data/embeddings/
+data/chunks/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Git and IDE
+.git/
+.vscode/
+
