@@ -1086,7 +1086,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="font-display font-bold text-lg leading-tight tracking-wider bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-              MK-INFINITE-AI
+              AgentX
             </h1>
             <p className="text-[10px] text-blue-400 font-mono tracking-widest uppercase">Agentic RAG Console</p>
           </div>
@@ -1170,11 +1170,11 @@ export default function App() {
               </div>
               <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-4 tracking-tight leading-tight uppercase">
                 WELCOME TO <br/>
-                <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">MK-INFINITE-AI</span> <br/>
+                <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">AgentX</span> <br/>
                 <span className="text-xl md:text-2xl text-gray-400 tracking-[0.3em] block mt-2">P.V.T</span>
               </h2>
               <p className="text-gray-400 text-base md:text-lg mb-8 leading-relaxed max-w-2xl">
-                A production-grade, Agentic RAG solution for MK-INFINITE-AI. Retrieve data across corporate Handbooks, IT policies, and SOPs using LangGraph, pgvector, and NVIDIA NIM LLMs.
+                A production-grade, Agentic RAG solution for AgentX. Retrieve data across corporate Handbooks, IT policies, and SOPs using LangGraph, pgvector, and NVIDIA NIM LLMs.
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center mb-12">
@@ -1813,7 +1813,7 @@ export default function App() {
 
                 {/* Footer Brand Info */}
                 <div className="px-4 text-center hidden md:block text-[10px] text-gray-500 font-mono">
-                  <p>MK-INFINITE-AI v0.1</p>
+                  <p>AgentX v0.1</p>
                   <p className="mt-0.5 text-gray-600">Enterprise AI Portal</p>
                 </div>
               </aside>
