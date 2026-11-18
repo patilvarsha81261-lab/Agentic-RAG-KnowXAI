@@ -124,7 +124,7 @@ def classify_intent_rules(
     # 2. Check direct query match for HR
     if any(bool(re.search(pat, q_low)) for pat in _HR_PATTERNS):
         if "onboarding" in q_low or "new employee" in q_low or "joining" in q_low or "first week" in q_low:
-            primary_rewrite = "What is the onboarding process for a new employee at MK-Infinite-AI"
+            primary_rewrite = "What is the onboarding process for a new employee at AgentX"
             alts = [
                 "New employee first week induction, laptop setup, and InfinityHR registration",
                 "HR onboarding checklist, background verification, and 30-day review",
@@ -142,7 +142,7 @@ def classify_intent_rules(
                 "Full and final settlement, asset handover, and relieving letter process",
             ]
         else:
-            primary_rewrite = "MK-Infinite-AI employee leave policy rules, annual leave entitlements, and application procedure"
+            primary_rewrite = "AgentX employee leave policy rules, annual leave entitlements, and application procedure"
             alts = [
                 "Paid Annual Leave carry forward and approval rules in InfinityHR",
                 "Sick leave, casual leave, and medical certificate requirements",
