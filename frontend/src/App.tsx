@@ -820,7 +820,7 @@ export default function App() {
       const data = await res.json().catch(() => null);
       if (res.ok) {
         setAuthSuccess("Registration successful! You may now login.");
-        triggerVoiceGreeting("Welcome to MK Infinite Private Limited.");
+        triggerVoiceGreeting("Welcome to AgentX Private Limited.");
         setPostRegisterEmail(cleanEmail);
         setShowPostRegisterPrompt(true);
         setRegEmail("");
@@ -1783,7 +1783,7 @@ export default function App() {
                         className="w-full flex items-center justify-center md:justify-start space-x-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-300 bg-gradient-to-r from-blue-900/60 to-cyan-900/60 hover:from-blue-600 hover:to-cyan-600 text-cyan-300 hover:text-white border border-cyan-500/30 shadow-lg shadow-cyan-500/10 font-semibold"
                       >
                         <Building className="w-5 h-5 shrink-0 text-cyan-400 group-hover:text-white" />
-                        <span className="hidden md:inline font-semibold">Admin Portal (MK Infinite)</span>
+                        <span className="hidden md:inline font-semibold">Admin Portal (AgentX)</span>
                       </button>
                     )}
 
@@ -2627,7 +2627,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* MASTER ENTERPRISE ADMIN DASHBOARD FOR MK INFINITE */}
+          {/* MASTER ENTERPRISE ADMIN DASHBOARD FOR AgentX */}
           {screen === "admin" && user && (user.role?.toLowerCase().includes("admin") || user.role?.toLowerCase().includes("owner") || user.role?.toLowerCase().includes("super")) && (
             <motion.div
               key="admin-dashboard-screen"

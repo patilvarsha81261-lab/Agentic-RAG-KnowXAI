@@ -16,7 +16,7 @@ export const AccessRolesSection: React.FC<AccessRolesSectionProps> = ({ onNaviga
       code: "super_admin",
       title: "Super Admin (Company Owner)",
       badgeColor: "bg-rose-500/10 text-rose-400 border-rose-500/20",
-      description: "Highest authority for MK Infinite Private Limited. Full access to executive telemetry, role governance, permanent employee deletion, department lifecycle, and security controls.",
+      description: "Highest authority for AgentX Private Limited. Full access to executive telemetry, role governance, permanent employee deletion, department lifecycle, and security controls.",
       permissions: [
         "Executive Dashboard & Analytics",
         "Employee Directory (View, Search, Filter)",
@@ -65,7 +65,7 @@ export const AccessRolesSection: React.FC<AccessRolesSectionProps> = ({ onNaviga
       code: "employee",
       title: "Employee (Standard Staff)",
       badgeColor: "bg-slate-800 text-gray-300 border-white/10",
-      description: "Standard registered corporate user for MK Infinite Private Limited. Zero administrative privileges. Strictly restricted from admin portal endpoints.",
+      description: "Standard registered corporate user for AgentX Private Limited. Zero administrative privileges. Strictly restricted from admin portal endpoints.",
       permissions: [
         "Standard Agentic AI RAG Knowledge Chat",
         "Personal Document Vault Browsing & Ingestion",
@@ -85,7 +85,7 @@ export const AccessRolesSection: React.FC<AccessRolesSectionProps> = ({ onNaviga
             <span>Role-Based Access Control (RBAC) Governance</span>
           </h2>
           <p className="text-gray-400 text-xs mt-1">
-            Server-side enforced privilege hierarchies for MK Infinite Private Limited.
+            Server-side enforced privilege hierarchies for AgentX Private Limited.
           </p>
         </div>
 

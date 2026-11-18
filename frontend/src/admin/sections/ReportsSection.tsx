@@ -23,7 +23,7 @@ export const ReportsSection: React.FC<ReportsSectionProps> = ({ metrics, onExpor
           <span>Executive Intelligence & Compliance Reports</span>
         </h2>
         <p className="text-gray-400 text-xs mt-1">
-          Generate sanitized, formula-injection protected corporate records for MK Infinite Private Limited.
+          Generate sanitized, formula-injection protected corporate records for AgentX Private Limited.
         </p>
       </div>
 

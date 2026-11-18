@@ -50,7 +50,7 @@ export const SecuritySection: React.FC<SecuritySectionProps> = ({
             <span>Security & Authentication Risk Monitor</span>
           </h2>
           <p className="text-gray-400 text-xs mt-1">
-            Real-time brute force protection, lockout states, biometric status, and failed authentication analysis for MK Infinite Private Limited.
+            Real-time brute force protection, lockout states, biometric status, and failed authentication analysis for AgentX Private Limited.
           </p>
         </div>
 

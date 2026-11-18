@@ -74,7 +74,7 @@ export const DepartmentModal: React.FC<DepartmentModalProps> = ({
             <h3 className="text-base font-bold text-white">
               {isEdit ? "Edit Corporate Department" : "Establish New Department"}
             </h3>
-            <p className="text-xs text-gray-400">MK Infinite Private Limited Organization</p>
+            <p className="text-xs text-gray-400">AgentX Private Limited Organization</p>
           </div>
         </div>
 

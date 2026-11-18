@@ -1,5 +1,5 @@
 /**
- * Admin Voice Greeting Service for MK Infinite Private Limited.
+ * Admin Voice Greeting Service for AgentX Private Limited.
  * 
  * Sequences two spoken phrases after successful super_admin login:
  * 1. "Hello Boss!"

@@ -154,7 +154,7 @@ export const DeleteEmployeeModal: React.FC<DeleteEmployeeModalProps> = ({
                 className="mt-0.5 accent-rose-500"
               />
               <span className="text-gray-300 text-xs leading-relaxed">
-                I understand that this action is permanent, revokes all credentials across MK Infinite Private Limited, and cannot be undone.
+                I understand that this action is permanent, revokes all credentials across AgentX Private Limited, and cannot be undone.
               </span>
             </label>
 

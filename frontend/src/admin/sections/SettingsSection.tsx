@@ -15,7 +15,7 @@ export const SettingsSection: React.FC = () => {
           <span>Company & Enterprise Portal Settings</span>
         </h2>
         <p className="text-gray-400 text-xs mt-1">
-          System metadata, corporate branding policies, and security parameters for MK Infinite Private Limited.
+          System metadata, corporate branding policies, and security parameters for AgentX Private Limited.
         </p>
       </div>
 
@@ -35,7 +35,7 @@ export const SettingsSection: React.FC = () => {
           <div className="space-y-3 text-xs pt-2">
             <div className="flex justify-between py-2 border-b border-white/5">
               <span className="text-gray-400">Company Name:</span>
-              <span className="text-white font-semibold">MK Infinite Private Limited</span>
+              <span className="text-white font-semibold">AgentX Private Limited</span>
             </div>
             <div className="flex justify-between py-2 border-b border-white/5">
               <span className="text-gray-400">System Platform:</span>

@@ -260,7 +260,7 @@ export const AdminLoginForm: React.FC<AdminLoginFormProps> = ({
         if (res.status === 403) {
           errorMessage =
             detail ||
-            "Access Denied: This administrative portal is strictly reserved for authorized MK Infinite Company Owners & Super Admins only.";
+            "Access Denied: This administrative portal is strictly reserved for authorized AgentX Company Owners & Super Admins only.";
         } else if (res.status === 423) {
           errorMessage =
             detail ||
@@ -386,7 +386,7 @@ export const AdminLoginForm: React.FC<AdminLoginFormProps> = ({
 
         <p className="text-gray-400 text-xs mb-5 flex items-center space-x-1.5">
           <Building className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-          <span>MK Infinite Private Limited — Executive Supervision</span>
+          <span>AgentX Private Limited — Executive Supervision</span>
         </p>
 
         {/* DUAL AUTHENTICATION METHOD SELECTOR TABS: User ID Login | Face Login */}
@@ -448,7 +448,7 @@ export const AdminLoginForm: React.FC<AdminLoginFormProps> = ({
                     type="text"
                     required
                     autoFocus
-                    placeholder="admin@mkinfinite.com or username"
+                    placeholder="admin@AgentX.com or username"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     className="w-full px-4 py-3 bg-slate-900/80 border border-white/10 rounded-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-sm text-white placeholder-gray-500 transition"

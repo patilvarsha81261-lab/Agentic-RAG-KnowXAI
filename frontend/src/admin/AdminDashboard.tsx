@@ -304,7 +304,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `MK_Infinite_Employees_${Date.now()}.csv`;
+      a.download = `AgentX_Employees_${Date.now()}.csv`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -578,7 +578,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
                 <div>
                   <h1 className="font-bold text-sm text-white tracking-tight leading-tight">
-                    MK Infinite Pvt. Ltd.
+                    AgentX Pvt. Ltd.
                   </h1>
                   <span className="text-[10px] font-mono text-cyan-400 font-medium">
                     Enterprise Admin Portal
@@ -665,7 +665,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
             {/* Breadcrumb */}
             <div className="flex items-center space-x-2 text-xs font-medium text-gray-400">
-              <span className="text-gray-400">MK Infinite</span>
+              <span className="text-gray-400">AgentX</span>
               <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
               <span className="text-cyan-400 capitalize">{currentSection.replace("-", " ")}</span>
             </div>

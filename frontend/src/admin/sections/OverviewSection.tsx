@@ -86,7 +86,7 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
               Company Overview & Operations Portal
             </h2>
             <p className="text-gray-300 text-sm mt-1 max-w-2xl">
-              Live enterprise monitoring for <span className="font-semibold text-white">MK Infinite Private Limited</span>.
+              Live enterprise monitoring for <span className="font-semibold text-white">AgentX Private Limited</span>.
               Employee counts, security integrity, department allocations, and compliance tracking.
             </p>
           </div>

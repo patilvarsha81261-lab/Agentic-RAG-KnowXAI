@@ -115,7 +115,7 @@ export const EmployeesSection: React.FC<EmployeesSectionProps> = ({
             </span>
           </h2>
           <p className="text-gray-400 text-xs mt-1">
-            Search, filter, manage permissions, and supervise accounts for MK Infinite Private Limited.
+            Search, filter, manage permissions, and supervise accounts for AgentX Private Limited.
           </p>
         </div>
 
