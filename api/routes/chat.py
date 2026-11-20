@@ -35,7 +35,10 @@ def get_or_create_workflow(provider_name: str) -> Any:
                 primary=llm,
                 secondary=local_llm,
             )
-        retriever = SemanticRetriever(session_factory=SessionLocal)
+        retriever = SemanticRetriever(
+            embedder=build_embedding_service(settings),
+            session_factory=SessionLocal
+        )
         _WORKFLOW_CACHE[provider_name] = create_workflow(llm, retriever)
     return _WORKFLOW_CACHE[provider_name]
 
