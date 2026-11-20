@@ -1,42 +1,55 @@
+
+# ==========================================
+# Stage 1: Build React Frontend
+# ==========================================
+FROM node:22-alpine AS frontend-build
+
+WORKDIR /frontend
+
+COPY frontend/package*.json ./
+RUN npm install --no-audit --no-fund
+
+COPY frontend/ ./
+RUN npm run build
+
+
+# ==========================================
+# Stage 2: FastAPI Backend
+# ==========================================
 FROM python:3.11-slim
 
-# Set working directory
 WORKDIR /app
 
-# Set environment variables for Python
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies (e.g. build-essential if needed for native extensions)
+# System dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc libpq-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for cache efficiency
+# Python dependencies
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Pre-download the ML embedding model to avoid runtime downloads
-# This caches it in the Docker image layers
+# Pre-download embedding model
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-small-en-v1.5')"
 
-# Create non-root user for security
+# Create non-root user
 RUN adduser --disabled-password --gecos "" appuser
 
-# Copy application source code
+# Copy backend source code
 COPY . .
 
-# Change ownership of the app directory
+# Copy built React frontend
+COPY --from=frontend-build /frontend/dist /app/frontend/dist
+
+# Set permissions
 RUN chown -R appuser:appuser /app
 
-# Switch to non-root user
 USER appuser
 
-# Expose the port (Render provides $PORT dynamically, but default is 8000)
 EXPOSE 8000
 
-# Start FastAPI application
 CMD uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}
