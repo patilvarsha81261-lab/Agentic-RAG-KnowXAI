@@ -23,23 +23,35 @@ router = APIRouter(prefix="/chat", tags=["chat"])
 _WORKFLOW_CACHE: Dict[str, Any] = {}
 
 
+
 def get_or_create_workflow(provider_name: str) -> Any:
-    """Cache compiled LangGraph workflows per provider to eliminate repeated graph compilation overhead."""
+    """Cache compiled LangGraph workflows per provider."""
+
     if provider_name not in _WORKFLOW_CACHE:
         settings = get_settings()
         llm = build_provider(provider_name)
 
-        if provider_name.lower() == "groq":
+        if provider_name.lower() == "gemini":
+            groq_llm = build_provider("groq")
+            llm = FallbackProvider(
+                primary=llm,
+                secondary=groq_llm,
+            )
+
+        elif provider_name.lower() == "groq":
             local_llm = build_provider("local")
             llm = FallbackProvider(
                 primary=llm,
                 secondary=local_llm,
             )
+
         retriever = SemanticRetriever(
             embedder=build_embedding_service(settings),
-            session_factory=SessionLocal
+            session_factory=SessionLocal,
         )
+
         _WORKFLOW_CACHE[provider_name] = create_workflow(llm, retriever)
+
     return _WORKFLOW_CACHE[provider_name]
 
 

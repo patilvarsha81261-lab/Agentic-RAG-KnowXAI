@@ -10,7 +10,7 @@ def test_voice_greeting_exact_strings_in_frontend():
     """Verify that frontend/src/App.tsx contains the exact required voice greetings."""
     app_tsx = Path("frontend/src/App.tsx").read_text(encoding="utf-8")
 
-    registration_greeting = "Welcome to MK Infinite Private Limited."
+    registration_greeting = "Welcome to AgentX Private Limited."
     face_login_greeting = "Hello dude, welcome back!"
 
     assert registration_greeting in app_tsx, (

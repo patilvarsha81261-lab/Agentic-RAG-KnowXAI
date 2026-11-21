@@ -1,8 +1,10 @@
-"""Groq primary with Ollama fallback for transient failures."""
+
+"""LLM fallback provider for transient API failures."""
 
 import logging
 from typing import Sequence
 
+from google.genai.errors import APIError
 from openai import (
     APIConnectionError,
     APITimeoutError,
@@ -21,9 +23,11 @@ RETRYABLE_ERRORS = (
     RateLimitError,
 )
 
+GEMINI_RETRYABLE_CODES = {429, 500, 502, 503, 504}
+
 
 class FallbackProvider(LLMProvider):
-    """Use secondary provider when the primary has a transient failure."""
+    """Use a secondary provider when the primary has a temporary failure."""
 
     def __init__(self, primary: LLMProvider, secondary: LLMProvider):
         super().__init__(primary.model)
@@ -33,9 +37,22 @@ class FallbackProvider(LLMProvider):
     def _execute(self, method, *args, **kwargs):
         try:
             return getattr(self.primary, method)(*args, **kwargs)
+
+        except APIError as exc:
+            if getattr(exc, "code", None) not in GEMINI_RETRYABLE_CODES:
+                raise
+
+            logger.warning(
+                "Primary Gemini provider unavailable (API error %s). "
+                "Switching to secondary provider.",
+                getattr(exc, "code", "unknown"),
+            )
+            return getattr(self.secondary, method)(*args, **kwargs)
+
         except RETRYABLE_ERRORS as exc:
             logger.warning(
-                "Primary LLM unavailable (%s); using local fallback",
+                "Primary LLM provider unavailable (%s). "
+                "Switching to secondary provider.",
                 type(exc).__name__,
             )
             return getattr(self.secondary, method)(*args, **kwargs)
@@ -43,7 +60,12 @@ class FallbackProvider(LLMProvider):
     def generate(self, prompt: str, *, temperature: float = 0.2) -> LLMResponse:
         return self._execute("generate", prompt, temperature=temperature)
 
-    def chat(self, messages: Sequence[Message], *, temperature: float = 0.2) -> LLMResponse:
+    def chat(
+        self,
+        messages: Sequence[Message],
+        *,
+        temperature: float = 0.2,
+    ) -> LLMResponse:
         return self._execute("chat", messages, temperature=temperature)
 
     def structured(
