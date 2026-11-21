@@ -1,3 +1,4 @@
+
 from unittest.mock import Mock, patch
 
 from pydantic import BaseModel
@@ -14,7 +15,7 @@ class Answer(BaseModel):
 def make_settings(**overrides: str) -> Settings:
     values = {
         "GEMINI_API_KEY": "native-gemini-key",
-        "GEMINI_MODEL": "gemini-2.0-flash",
+        "GEMINI_MODEL": "gemini-3.8-flash",
         "GEMINI_OPENROUTER_MODEL": "google/gemini-2.0-flash-001",
         "NVIDIA_API_KEY": "nvidia-key",
         "DATABASE_URL": "postgresql+psycopg2://user:password@localhost/db",
@@ -42,14 +43,37 @@ def test_native_gemini_key_uses_google_sdk() -> None:
     with patch("agents.llm.factory.GeminiProvider") as provider_class:
         build_provider("gemini", settings=settings)
 
-    provider_class.assert_called_once_with(api_key="native-gemini-key", model="gemini-2.0-flash")
+    provider_class.assert_called_once_with(
+        api_key="native-gemini-key",
+        model="gemini-3.8-flash",
+    )
+
+
+def test_native_gemini_falls_back_for_openrouter_style_model() -> None:
+    settings = make_settings()
+
+    with patch("agents.llm.factory.GeminiProvider") as provider_class:
+        build_provider(
+            "gemini",
+            model="google/some-model",
+            settings=settings,
+        )
+
+    provider_class.assert_called_once_with(
+        api_key="native-gemini-key",
+        model="gemini-3.8-flash",
+    )
 
 
 def test_nvidia_openrouter_key_uses_openrouter_and_agent_model_override() -> None:
     settings = make_settings(NVIDIA_API_KEY="sk-or-test")
 
     with patch("agents.llm.factory.OpenAICompatibleProvider") as provider_class:
-        build_provider("nvidia", model="nvidia/test-model", settings=settings)
+        build_provider(
+            "nvidia",
+            model="nvidia/test-model",
+            settings=settings,
+        )
 
     provider_class.assert_called_once_with(
         api_key="sk-or-test",
@@ -61,6 +85,7 @@ def test_nvidia_openrouter_key_uses_openrouter_and_agent_model_override() -> Non
 def test_openai_compatible_structured_response() -> None:
     completion = Mock()
     completion.choices = [Mock(message=Mock(content='{"answer":"ok"}'))]
+
     client = Mock()
     client.chat.completions.create.return_value = completion
 
@@ -70,6 +95,7 @@ def test_openai_compatible_structured_response() -> None:
             base_url="https://example.test/v1",
             model="test-model",
         )
+
         result = provider.structured(
             [{"role": "user", "content": "Return JSON"}],
             Answer,
@@ -85,7 +111,11 @@ def test_gemini_generate_uses_google_client() -> None:
     client.models.generate_content.return_value = response
 
     with patch("agents.llm.providers.genai.Client", return_value=client):
-        provider = GeminiProvider(api_key="test-key", model="gemini-test")
+        provider = GeminiProvider(
+            api_key="test-key",
+            model="gemini-test",
+        )
+
         result = provider.generate("hello")
 
     assert result.text == "ok"
